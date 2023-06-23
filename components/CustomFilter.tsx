@@ -4,15 +4,20 @@ import { Fragment, useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { Listbox, Transition } from "@headlessui/react";
-import { UpdateSearchParams } from "@/utils";
+
 import { CustomFilterProps } from "@/types";
+import { UpdateSearchParams } from "@/utils";
 
-
-
-export default function CustomFilter({ title, options, setFilter }: CustomFilterProps) {
+export default function CustomFilter({ title, options }: CustomFilterProps) {
+  const router = useRouter();
   const [selected, setSelected] = useState(options[0]); // State for storing the selected option
 
   // update the URL search parameters and navigate to the new URL
+  const handleUpdateParams = (e: { title: string; value: string }) => {
+    const newPathName = UpdateSearchParams(title, e.value.toLowerCase());
+
+    router.push(newPathName);
+  };
 
   return (
     <div className='w-fit'>
@@ -20,7 +25,7 @@ export default function CustomFilter({ title, options, setFilter }: CustomFilter
         value={selected}
         onChange={(e) => {
           setSelected(e); // Update the selected option in state
-          setFilter(e.value); // Update the URL search parameters and navigate to the new URL
+          handleUpdateParams(e); // Update the URL search parameters and navigate to the new URL
         }}
       >
         <div className='relative w-fit z-10'>

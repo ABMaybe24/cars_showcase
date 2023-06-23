@@ -4,8 +4,8 @@ import { fuels, yearsOfProduction } from "@/constants";
 import { CarCard, ShowMore, SearchBar, CustomFilter, Hero } from "@/components";
 import { Metadata } from "next";
 
-const APP_NAME = "next-pwa example";
-const APP_DESCRIPTION = "This is an example of using next-pwa";
+const APP_NAME = "Car Hub";
+const APP_DESCRIPTION = "Developed by Abbas";
 
 export const metadata: Metadata = {
   applicationName: APP_NAME,
